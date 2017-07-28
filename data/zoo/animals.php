@@ -9,5 +9,34 @@
  */
 
 return [
-
+    'Vögel' => [
+        'Pagagei',
+        'Taube',
+        'Huhn',
+        'Strauß',
+        'Pfau',
+        'Pinguin',
+        'Flamingo',
+    ],
+    'Säugetiere' => [
+        'Elefant',
+        'Giraffe',
+        'Nashorn',
+        'Kuh',
+        'Pferd',
+        'Eisbär',
+        'Tiger',
+        'Löwe',
+        'Esel',
+        'Kamel',
+        'Pavian',
+        'Antilope',
+    ],
+    'Fische' => [
+        'Goldfisch',
+        'Doktorfisch',
+        'Hecht',
+        'Barsch',
+        'Muräne',
+    ],
 ];
