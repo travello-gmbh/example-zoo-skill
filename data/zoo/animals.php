@@ -9,10 +9,5 @@
  */
 
 return [
-    'travello_alexa' => [
-        'validate_signature' => false,
-        'log_requests'       => false,
-        'cache_flag'         => false,
-        'cache_dir'          => PROJECT_ROOT . '/data/cache/',
-    ],
+
 ];
