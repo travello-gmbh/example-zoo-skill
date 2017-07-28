@@ -24,7 +24,7 @@ use Zoo\Application\Helper\ZooTextHelperInterface;
 class ZooApplication extends AbstractAlexaApplication
 {
     /** @var string */
-    protected $applicationId = 'amzn1.ask.skill.place-your-skill-id-here';
+    protected $applicationId = 'amzn1.ask.skill.7e43651b-adee-4e0d-b618-bc444a9c5218';
 
     /** @var string */
     protected $smallImageUrl = 'https://www.travello.audio/cards/zoo-480x480.png';
