@@ -19,4 +19,47 @@ use TravelloAlexaLibrary\Application\Helper\AbstractTextHelper;
  */
 class ZooTextHelper extends AbstractTextHelper implements ZooTextHelperInterface
 {
+    /**
+     * Get the animal title
+     *
+     * @return string
+     */
+    public function getAnimalTitle(): string
+    {
+        return $this->commonTexts['alexaAnimalTitle'];
+    }
+
+    /**
+     * Get a animal message
+     *
+     * @param string $animal
+     *
+     * @return string
+     */
+    public function getAnimalMessage(string $animal): string
+    {
+        return sprintf($this->commonTexts['alexaAnimalMessage'], $animal);
+    }
+
+    /**
+     * Get the count title
+     *
+     * @return string
+     */
+    public function getCountTitle(): string
+    {
+        return $this->commonTexts['alexaCountTitle'];
+    }
+
+    /**
+     * Get a count message
+     *
+     * @param int $count
+     *
+     * @return string
+     */
+    public function getCountMessage(int $count): string
+    {
+        return sprintf($this->commonTexts['alexaCountMessage'], $count);
+    }
 }

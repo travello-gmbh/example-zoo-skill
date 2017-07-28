@@ -16,4 +16,8 @@ return [
     'alexaHelpMessage'     => 'Du kannst mich fragen, welches Tier noch in deinem Zoo ist und wie viele Tiere in deinem Zoo sind.',
     'alexaStopTitle'       => 'Danke',
     'alexaStopMessage'     => 'Danke und bis bald!',
+    'alexaAnimalTitle'     => 'Ein Tier',
+    'alexaAnimalMessage'   => '%1$s lebt in deinem Zoo!',
+    'alexaCountTitle'      => 'Tierzählung',
+    'alexaCountMessage'    => 'In deinem Zoo leben %1$s Tiere!',
 ];

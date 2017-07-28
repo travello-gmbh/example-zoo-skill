@@ -19,4 +19,35 @@ use TravelloAlexaLibrary\Application\Helper\TextHelperInterface;
  */
 interface ZooTextHelperInterface extends TextHelperInterface
 {
+    /**
+     * Get the animal title
+     *
+     * @return string
+     */
+    public function getAnimalTitle(): string;
+
+    /**
+     * Get a animal message
+     *
+     * @param string $animal
+     *
+     * @return string
+     */
+    public function getAnimalMessage(string $animal): string;
+
+    /**
+     * Get the count title
+     *
+     * @return string
+     */
+    public function getCountTitle(): string;
+
+    /**
+     * Get a count message
+     *
+     * @param int $count
+     *
+     * @return string
+     */
+    public function getCountMessage(int $count): string;
 }
