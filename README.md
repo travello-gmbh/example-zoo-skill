@@ -14,7 +14,7 @@ Richten Sie danach einen Virtual Host `phpmagazin.alexa` für das Verzeichnis
 `/phpmagazin.alexa/html/` ein. 
 
 Um die Funktion der Anwendung nach der Installation zu testen, rufen Sie im Browser die URL
-http://phpmagazin.alexa/ auf. Sie sollten eine JSON Ausgabe mit einer Begrüssung erhalten.
+http://phpmagazin.alexa/ auf. Sie sollten eine JSON Ausgabe mit einer Begrüßung erhalten.
 
 Wenn Sie Postman installiert haben, können Sie die Datei `/data/postman/collection.json` 
 importieren. Prüfen Sie dann die Abfrage `Zoo LaunchRequest`. Wenn die Rückgabe in etwa so
