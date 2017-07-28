@@ -12,8 +12,6 @@ namespace Zoo\Application;
 
 use TravelloAlexaLibrary\Application\AbstractAlexaApplication;
 use TravelloAlexaLibrary\Request\RequestType\IntentRequestType;
-use TravelloAlexaLibrary\Response\Card\Standard;
-use TravelloAlexaLibrary\Response\OutputSpeech\SSML;
 use Zoo\Application\Helper\ZooTextHelperInterface;
 
 /**
@@ -66,9 +64,7 @@ class ZooApplication extends AbstractAlexaApplication
         $intentRequest = $this->alexaRequest->getRequest();
 
         switch ($intentRequest->getIntent()->getName()) {
-            case 'ZooIntent':
-                return $this->zooIntent();
-            // no break
+            // add custom intents
 
             case 'AMAZON.StopIntent':
                 return $this->stopIntent();
@@ -82,30 +78,5 @@ class ZooApplication extends AbstractAlexaApplication
             default:
                 return $this->helpIntent();
         }
-    }
-
-    /**
-     * Handle the greet intent
-     *
-     * @return bool
-     */
-    private function zooIntent(): bool
-    {
-        $zooMessage = $this->textHelper->getZooMessage();
-
-        $this->alexaResponse->setOutputSpeech(
-            new SSML($zooMessage)
-        );
-
-        $this->alexaResponse->setCard(
-            new Standard(
-                $this->textHelper->getZooTitle(),
-                $zooMessage,
-                $this->smallImageUrl,
-                $this->largeImageUrl
-            )
-        );
-
-        return true;
     }
 }
