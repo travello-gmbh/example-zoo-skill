@@ -2,18 +2,17 @@
 
 namespace Zoo\Application;
 
-
 class ZooApplication extends AbstractAlexaApplication
 {
     /* ... */
 
-    private $animals = [];
+    private $animalList = [];
 
-    public function __construct(ZooTextHelperInterface $textHelper, array $animals)
+    public function __construct(ZooTextHelperInterface $textHelper, array $animalList)
     {
         parent::__construct($textHelper);
 
-        $this->animals = $animals;
+        $this->animalList = $animalList;
     }
 
     /* ... */
@@ -29,8 +28,9 @@ class ZooApplication extends AbstractAlexaApplication
 
     private function getRandomAnimal()
     {
-        $randomType   = array_rand($this->animals);
-        $randomAnimal = $this->animals[$randomType][array_rand($this->animals[$randomType])];
+        $randomType      = array_rand($this->animalList);
+        $randomAnimalKey = array_rand($this->animalList[$randomType]);
+        $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
 
         return $randomAnimal;
     }

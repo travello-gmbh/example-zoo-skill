@@ -36,19 +36,22 @@ class ZooApplication extends AbstractAlexaApplication
     protected $textHelper;
 
     /** @var array */
-    private $animals = [];
+    private $animalList = [];
+
+    /** @var array */
+    private $sessionAnimals = [];
 
     /**
      * ZooApplication constructor.
      *
      * @param ZooTextHelperInterface $textHelper
-     * @param array                  $animals
+     * @param array                  $animalList
      */
-    public function __construct(ZooTextHelperInterface $textHelper, array $animals)
+    public function __construct(ZooTextHelperInterface $textHelper, array $animalList)
     {
         parent::__construct($textHelper);
 
-        $this->animals = $animals;
+        $this->animalList = $animalList;
     }
 
     /**
@@ -58,6 +61,12 @@ class ZooApplication extends AbstractAlexaApplication
      */
     protected function initSessionAttributes(): bool
     {
+        if ($this->alexaRequest->getSession()->getAttribute('animals')) {
+            $this->sessionAnimals = $this->alexaRequest->getSession()->getAttribute('animals');
+        } else {
+            $this->sessionAnimals = [];
+        }
+
         return true;
     }
 
@@ -68,7 +77,9 @@ class ZooApplication extends AbstractAlexaApplication
      */
     protected function getSessionAttributes(): array
     {
-        return [];
+        return [
+            'animals' => $this->sessionAnimals,
+        ];
     }
 
     /**
@@ -124,6 +135,8 @@ class ZooApplication extends AbstractAlexaApplication
             )
         );
 
+        $this->alexaResponse->addSessionAttribute('animals', $this->sessionAnimals);
+
         return true;
     }
 
@@ -132,8 +145,18 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function getRandomAnimal()
     {
-        $randomType   = array_rand($this->animals);
-        $randomAnimal = $this->animals[$randomType][array_rand($this->animals[$randomType])];
+        do {
+            $randomType      = array_rand($this->animalList);
+            $randomAnimalKey = array_rand($this->animalList[$randomType]);
+            $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
+
+        } while(in_array($randomAnimal, $this->sessionAnimals));
+
+        if (count($this->sessionAnimals) >= 5) {
+            array_shift($this->sessionAnimals);
+        }
+
+        $this->sessionAnimals[] = $randomAnimal;
 
         return $randomAnimal;
     }

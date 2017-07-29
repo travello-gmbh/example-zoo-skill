@@ -32,8 +32,8 @@ class ZooApplicationFactory implements FactoryInterface
         ContainerInterface $container, $requestedName, array $options = null
     ): ZooApplication {
         $textHelper = $container->get(ZooTextHelper::class);
-        $animals    = include PROJECT_ROOT . '/data/zoo/animals.php';
+        $animalList = include PROJECT_ROOT . '/data/zoo/animals.php';
 
-        return new ZooApplication($textHelper, $animals);
+        return new ZooApplication($textHelper, $animalList);
     }
 }
