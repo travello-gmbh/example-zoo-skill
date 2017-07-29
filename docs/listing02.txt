@@ -1,0 +1,12 @@
+<?php
+namespace Zoo\Application\Helper;
+
+use TravelloAlexaLibrary\Application\Helper\TextHelperInterface;
+
+interface ZooTextHelperInterface extends TextHelperInterface
+{
+    public function getAnimalTitle(): string;
+    public function getAnimalMessage(string $animal): string;
+    public function getCountTitle(): string;
+    public function getCountMessage(int $count): string;
+}

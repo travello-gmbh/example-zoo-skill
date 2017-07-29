@@ -1,0 +1,49 @@
+<?php
+namespace Zoo\Application;
+
+use TravelloAlexaLibrary\Application\AbstractAlexaApplication;
+use TravelloAlexaLibrary\Request\RequestType\IntentRequestType;
+use TravelloAlexaLibrary\Response\Card\Standard;
+use TravelloAlexaLibrary\Response\OutputSpeech\SSML;
+use Zoo\Application\Helper\ZooTextHelperInterface;
+
+class ZooApplication extends AbstractAlexaApplication
+{
+    /* ... */
+
+    protected function handleIntentRequest(): bool
+    {
+        /** @var IntentRequestType $intentRequest */
+        $intentRequest = $this->alexaRequest->getRequest();
+
+        switch ($intentRequest->getIntent()->getName()) {
+            case 'AnimalIntent':
+                return $this->animalIntent();
+
+            case 'AMAZON.StopIntent':
+                return $this->stopIntent();
+
+            /* ... */
+        }
+    }
+
+    private function animalIntent(): bool
+    {
+        $zooMessage = $this->textHelper->getAnimalMessage('Ein Elefant');
+
+        $this->alexaResponse->setOutputSpeech(
+            new SSML($zooMessage)
+        );
+
+        $this->alexaResponse->setCard(
+            new Standard(
+                $this->textHelper->getAnimalTitle(),
+                $zooMessage,
+                $this->smallImageUrl,
+                $this->largeImageUrl
+            )
+        );
+
+        return true;
+    }
+}
