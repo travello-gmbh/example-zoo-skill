@@ -1,0 +1,37 @@
+<?php
+
+namespace Zoo\Application;
+
+
+class ZooApplication extends AbstractAlexaApplication
+{
+    /* ... */
+
+    private $animals = [];
+
+    public function __construct(ZooTextHelperInterface $textHelper, array $animals)
+    {
+        parent::__construct($textHelper);
+
+        $this->animals = $animals;
+    }
+
+    /* ... */
+
+    private function animalIntent(): bool
+    {
+        $randomAnimal = $this->getRandomAnimal();
+
+        $zooMessage = $this->textHelper->getAnimalMessage($randomAnimal);
+
+        /* ... */
+    }
+
+    private function getRandomAnimal()
+    {
+        $randomType   = array_rand($this->animals);
+        $randomAnimal = $this->animals[$randomType][array_rand($this->animals[$randomType])];
+
+        return $randomAnimal;
+    }
+}

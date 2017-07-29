@@ -35,6 +35,22 @@ class ZooApplication extends AbstractAlexaApplication
     /** @var ZooTextHelperInterface */
     protected $textHelper;
 
+    /** @var array */
+    private $animals = [];
+
+    /**
+     * ZooApplication constructor.
+     *
+     * @param ZooTextHelperInterface $textHelper
+     * @param array                  $animals
+     */
+    public function __construct(ZooTextHelperInterface $textHelper, array $animals)
+    {
+        parent::__construct($textHelper);
+
+        $this->animals = $animals;
+    }
+
     /**
      * Initialize the attributes
      *
@@ -91,7 +107,9 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function animalIntent(): bool
     {
-        $zooMessage = $this->textHelper->getAnimalMessage('Ein Elefant');
+        $randomAnimal = $this->getRandomAnimal();
+
+        $zooMessage = $this->textHelper->getAnimalMessage($randomAnimal);
 
         $this->alexaResponse->setOutputSpeech(
             new SSML($zooMessage)
@@ -107,5 +125,16 @@ class ZooApplication extends AbstractAlexaApplication
         );
 
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    private function getRandomAnimal()
+    {
+        $randomType   = array_rand($this->animals);
+        $randomAnimal = $this->animals[$randomType][array_rand($this->animals[$randomType])];
+
+        return $randomAnimal;
     }
 }
