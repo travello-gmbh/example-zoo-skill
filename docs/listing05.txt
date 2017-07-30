@@ -1,0 +1,18 @@
+<?php
+namespace Zoo\Application;
+
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
+use Zoo\Application\Helper\ZooTextHelper;
+
+class ZooApplicationFactory implements FactoryInterface
+{
+    public function __invoke(
+        ContainerInterface $container, $requestedName, array $options = null
+    ): ZooApplication {
+        $textHelper = $container->get(ZooTextHelper::class);
+        $animalList = include PROJECT_ROOT . '/data/zoo/animals.php';
+
+        return new ZooApplication($textHelper, $animalList);
+    }
+}
