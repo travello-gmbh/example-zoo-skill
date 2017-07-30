@@ -1,0 +1,60 @@
+<?php
+namespace Zoo\Application;
+
+class ZooApplication extends AbstractAlexaApplication
+{
+    /* ... */
+
+    protected function handleIntentRequest(): bool
+    {
+        /** @var IntentRequestType $intentRequest */
+        $intentRequest = $this->alexaRequest->getRequest();
+
+        switch ($intentRequest->getIntent()->getName()) {
+            case 'AnimalIntent':
+                return $this->animalIntent();
+            // no break
+
+            case 'CountIntent':
+                return $this->countIntent();
+            // no break
+
+            /* ... */
+        }
+    }
+
+    /* ... */
+
+    private function countIntent(): bool
+    {
+        $count = $this->getAnimalCount();
+
+        $zooMessage = $this->textHelper->getCountMessage($count);
+
+        $this->alexaResponse->setOutputSpeech(
+            new SSML($zooMessage)
+        );
+
+        $this->alexaResponse->setCard(
+            new Standard(
+                $this->textHelper->getCountTitle(),
+                $zooMessage,
+                $this->smallImageUrl,
+                $this->largeImageUrl
+            )
+        );
+
+        return true;
+    }
+
+    private function getAnimalCount()
+    {
+        $count = 0;
+
+        foreach ($this->animalList as $type => $typeList) {
+            $count += count($typeList);
+        }
+
+        return $count;
+    }
+}

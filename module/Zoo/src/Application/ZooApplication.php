@@ -97,6 +97,10 @@ class ZooApplication extends AbstractAlexaApplication
                 return $this->animalIntent();
             // no break
 
+            case 'CountIntent':
+                return $this->countIntent();
+            // no break
+
             case 'AMAZON.StopIntent':
                 return $this->stopIntent();
             // no break
@@ -159,5 +163,46 @@ class ZooApplication extends AbstractAlexaApplication
         $this->sessionAnimals[] = $randomAnimal;
 
         return $randomAnimal;
+    }
+
+    /**
+     * Handle the count intent
+     *
+     * @return bool
+     */
+    private function countIntent(): bool
+    {
+        $count = $this->getAnimalCount();
+
+        $zooMessage = $this->textHelper->getCountMessage($count);
+
+        $this->alexaResponse->setOutputSpeech(
+            new SSML($zooMessage)
+        );
+
+        $this->alexaResponse->setCard(
+            new Standard(
+                $this->textHelper->getCountTitle(),
+                $zooMessage,
+                $this->smallImageUrl,
+                $this->largeImageUrl
+            )
+        );
+
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+    private function getAnimalCount()
+    {
+        $count = 0;
+
+        foreach ($this->animalList as $type => $typeList) {
+            $count += count($typeList);
+        }
+
+        return $count;
     }
 }
