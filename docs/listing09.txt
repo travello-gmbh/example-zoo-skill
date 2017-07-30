@@ -1,0 +1,84 @@
+<?php
+namespace Zoo\Application;
+
+class ZooApplication extends AbstractAlexaApplication
+{
+    /* ... */
+
+    private function animalIntent(): bool
+    {
+        $speciesSlot = $this->getSpeciesSlot();
+
+        $randomAnimal = $this->getRandomAnimal($speciesSlot);
+
+        $zooMessage = $this->textHelper->getAnimalMessage($randomAnimal);
+
+        $this->alexaResponse->setOutputSpeech(
+            new SSML($zooMessage)
+        );
+
+        $this->alexaResponse->setCard(
+            new Standard(
+                $this->textHelper->getAnimalTitle(),
+                $zooMessage,
+                $this->smallImageUrl,
+                $this->largeImageUrl
+            )
+        );
+
+        $this->alexaResponse->addSessionAttribute('animals', $this->sessionAnimals);
+
+        return true;
+    }
+
+    private function getSpeciesSlot()
+    {
+        /** @var IntentRequestType $intentRequest */
+        $intentRequest = $this->alexaRequest->getRequest();
+
+        $speciesSlot = $intentRequest->getIntent()->getSlotValue('species');
+
+        switch ($speciesSlot) {
+            case 'Vogel':
+            case 'vogel':
+            case 'Vögel':
+            case 'vögel':
+                return 'V';
+
+            case 'Säugetier':
+            case 'säugetier':
+            case 'Säugetiere':
+            case 'säugetiere':
+                return 'S';
+
+            case 'Fisch':
+            case 'fisch':
+            case 'Fische':
+            case 'fische':
+                return 'F';
+
+            default:
+                return null;
+        }
+    }
+
+    private function getRandomAnimal(string $speciesSlot = null)
+    {
+        do {
+            $randomType      = is_null($speciesSlot) ? array_rand($this->animalList) : $speciesSlot;
+            $randomAnimalKey = array_rand($this->animalList[$randomType]);
+            $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
+
+        } while(in_array($randomAnimal, $this->sessionAnimals));
+
+        if (count($this->sessionAnimals) >= 5) {
+            array_shift($this->sessionAnimals);
+        }
+
+        $this->sessionAnimals[] = $randomAnimal;
+
+        return $randomAnimal;
+    }
+
+    /* ... */
+}

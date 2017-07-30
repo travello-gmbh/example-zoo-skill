@@ -9,7 +9,7 @@
  */
 
 return [
-    'Vögel'      => [
+    'V' => [
         'V01' => 'Ein Pagagei',
         'V02' => 'Eine Taube',
         'V03' => 'Ein Huhn',
@@ -18,7 +18,7 @@ return [
         'V06' => 'Ein Pinguin',
         'V07' => 'Ein Flamingo',
     ],
-    'Säugetiere' => [
+    'S' => [
         'S01' => 'Ein Elefant',
         'S02' => 'Eine Giraffe',
         'S03' => 'Ein Nashorn',
@@ -32,7 +32,7 @@ return [
         'S11' => 'Ein Pavian',
         'S12' => 'Eine Antilope',
     ],
-    'Fische'     => [
+    'F' => [
         'F01' => 'Ein Goldfisch',
         'F02' => 'Ein Doktorfisch',
         'F03' => 'Ein Hecht',
