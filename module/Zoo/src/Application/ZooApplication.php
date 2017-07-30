@@ -122,7 +122,9 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function animalIntent(): bool
     {
-        $randomAnimal = $this->getRandomAnimal();
+        $speciesSlot = $this->getSpeciesSlot();
+
+        $randomAnimal = $this->getRandomAnimal($speciesSlot);
 
         $zooMessage = $this->textHelper->getAnimalMessage($randomAnimal);
 
@@ -145,12 +147,48 @@ class ZooApplication extends AbstractAlexaApplication
     }
 
     /**
+     * @return string|null
+     */
+    private function getSpeciesSlot()
+    {
+        /** @var IntentRequestType $intentRequest */
+        $intentRequest = $this->alexaRequest->getRequest();
+
+        $speciesSlot = $intentRequest->getIntent()->getSlotValue('species');
+
+        switch ($speciesSlot) {
+            case 'Vogel':
+            case 'vogel':
+            case 'Vögel':
+            case 'vögel':
+                return 'V';
+
+            case 'Säugetier':
+            case 'säugetier':
+            case 'Säugetiere':
+            case 'säugetiere':
+                return 'S';
+
+            case 'Fisch':
+            case 'fisch':
+            case 'Fische':
+            case 'fische':
+                return 'F';
+
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * @param string $speciesSlot
+     *
      * @return string
      */
-    private function getRandomAnimal()
+    private function getRandomAnimal(string $speciesSlot = null)
     {
         do {
-            $randomType      = array_rand($this->animalList);
+            $randomType      = is_null($speciesSlot) ? array_rand($this->animalList) : $speciesSlot;
             $randomAnimalKey = array_rand($this->animalList[$randomType]);
             $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
 
