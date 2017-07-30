@@ -1,0 +1,9 @@
+<?php
+return [
+    /* ... */
+
+    'alexaAnimalTitle'     => 'Ein Tier',
+    'alexaAnimalMessage'   => '%1$s lebt in deinem Zoo!',
+    'alexaCountTitle'      => 'Tierzählung',
+    'alexaCountMessage'    => 'In deinem Zoo leben %1$s Tiere!',
+];

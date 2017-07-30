@@ -1,0 +1,55 @@
+<?php
+namespace Zoo\Application;
+
+class ZooApplication extends AbstractAlexaApplication
+{
+    /* ... */
+
+    /** @var array */
+    private $sessionAnimals = [];
+
+    protected function initSessionAttributes(): bool
+    {
+        if ($this->alexaRequest->getSession()->getAttribute('animals')) {
+            $this->sessionAnimals = $this->alexaRequest->getSession()->getAttribute('animals');
+        } else {
+            $this->sessionAnimals = [];
+        }
+
+        return true;
+    }
+
+    protected function getSessionAttributes(): array
+    {
+        return [
+            'animals' => $this->sessionAnimals,
+        ];
+    }
+
+    private function animalIntent(): bool
+    {
+        /* ... */
+
+        $this->alexaResponse->addSessionAttribute('animals', $this->sessionAnimals);
+
+        return true;
+    }
+
+    private function getRandomAnimal()
+    {
+        do {
+            $randomType      = array_rand($this->animalList);
+            $randomAnimalKey = array_rand($this->animalList[$randomType]);
+            $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
+
+        } while(in_array($randomAnimal, $this->sessionAnimals));
+
+        if (count($this->sessionAnimals) >= 5) {
+            array_shift($this->sessionAnimals);
+        }
+
+        $this->sessionAnimals[] = $randomAnimal;
+
+        return $randomAnimal;
+    }
+}
