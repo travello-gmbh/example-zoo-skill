@@ -30,7 +30,9 @@ class ZooTextHelperFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): ZooTextHelper
     {
         return new ZooTextHelper(
-            include PROJECT_ROOT . '/data/texts/zoo.common.texts.php'
+            [
+                'de-DE' => include PROJECT_ROOT . '/data/texts/zoo.common.texts.de-DE.php',
+            ]
         );
     }
 }
