@@ -26,7 +26,7 @@ class ZooTextHelper extends AbstractTextHelper implements ZooTextHelperInterface
      */
     public function getAnimalTitle(): string
     {
-        return $this->commonTexts['alexaAnimalTitle'];
+        return $this->commonTexts[$this->locale]['alexaAnimalTitle'];
     }
 
     /**
@@ -38,7 +38,7 @@ class ZooTextHelper extends AbstractTextHelper implements ZooTextHelperInterface
      */
     public function getAnimalMessage(string $animal): string
     {
-        return sprintf($this->commonTexts['alexaAnimalMessage'], $animal);
+        return sprintf($this->commonTexts[$this->locale]['alexaAnimalMessage'], $animal);
     }
 
     /**
@@ -48,7 +48,7 @@ class ZooTextHelper extends AbstractTextHelper implements ZooTextHelperInterface
      */
     public function getCountTitle(): string
     {
-        return $this->commonTexts['alexaCountTitle'];
+        return $this->commonTexts[$this->locale]['alexaCountTitle'];
     }
 
     /**
@@ -60,6 +60,6 @@ class ZooTextHelper extends AbstractTextHelper implements ZooTextHelperInterface
      */
     public function getCountMessage(int $count): string
     {
-        return sprintf($this->commonTexts['alexaCountMessage'], $count);
+        return sprintf($this->commonTexts[$this->locale]['alexaCountMessage'], $count);
     }
 }
