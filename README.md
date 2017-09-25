@@ -1,24 +1,21 @@
-# PHP Magazin Alexa mit PHP
+# Example Project for My Zoo skill
 
-Beispielprojekt für PHP Magazin über Alexa Skill Entwicklung mit PHP. Die Installation kann 
-erfolgen per folgendem Befehl:
+Install the example project with these lines:
 
 ```
-git clone https://github.com/RalfEggert/phpmagazin.alexa
+git clone https://github.com/travello-gmbh/example-zoo-skill
 cd phpmagazin.alexa
 composer install
 sudo chmod -R 777 data/cache/
 ```
 
-Richten Sie danach einen Virtual Host `phpmagazin.alexa` für das Verzeichnis 
-`/phpmagazin.alexa/html/` ein. 
+Setup a Virtual Host `example-zoo-skill` for the directory `/example-zoo-skill/html/`. 
 
-Um die Funktion der Anwendung nach der Installation zu testen, rufen Sie im Browser die URL
-http://phpmagazin.alexa/ auf. Sie sollten eine JSON Ausgabe mit einer Begrüßung erhalten.
+To check the correct installation of the application, please open the URL http://example-zoo-skill/ in your browser. 
+You should get a JSON output with a little welcome message.
 
-Wenn Sie Postman installiert haben, können Sie die Datei `/data/postman/collection.json` 
-importieren. Prüfen Sie dann die Abfrage `Zoo LaunchRequest`. Wenn die Rückgabe in etwa so
-aussieht wie hier, dann war die Installation erfolgreich:
+If you have Postman up and running, you can import the file `/data/postman/collection.json`. Please check the call
+`Zoo LaunchRequest`. If the reponse looks similar to this the installation was successful:
 
 ```
     {
