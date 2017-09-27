@@ -18,4 +18,8 @@ return [
     'alexaCancelMessage'   => 'Thanks and see you soon!',
     'alexaStopTitle'       => 'Thanks',
     'alexaStopMessage'     => 'Thanks and see you soon!',
+    'alexaAnimalTitle'     => 'An animal',
+    'alexaAnimalMessage'   => '%1$s lives in your zoo!',
+    'alexaCountTitle'      => 'Animal census',
+    'alexaCountMessage'    => '%1$s animals live in your zoo!',
 ];
