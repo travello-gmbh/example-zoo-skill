@@ -98,7 +98,9 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function animalIntent(): bool
     {
-        $zooMessage = $this->textHelper->getAnimalMessage('Ein Elefant');
+        $animal = $this->alexaRequest->getRequest()->getLocale() === 'de-DE' ? 'Ein Elefant' : 'An elephant';
+        
+        $zooMessage = $this->textHelper->getAnimalMessage($animal);
 
         $this->alexaResponse->setOutputSpeech(
             new SSML($zooMessage)
