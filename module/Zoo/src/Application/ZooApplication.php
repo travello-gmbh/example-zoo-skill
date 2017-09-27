@@ -152,10 +152,12 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function getRandomAnimal()
     {
+        $locale = $this->alexaRequest->getRequest()->getLocale();
+
         do {
-            $randomType      = array_rand($this->animalList);
-            $randomAnimalKey = array_rand($this->animalList[$randomType]);
-            $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
+            $randomType      = array_rand($this->animalList[$locale]);
+            $randomAnimalKey = array_rand($this->animalList[$locale][$randomType]);
+            $randomAnimal    = $this->animalList[$locale][$randomType][$randomAnimalKey];
 
         } while(in_array($randomAnimal, $this->sessionAnimals));
 

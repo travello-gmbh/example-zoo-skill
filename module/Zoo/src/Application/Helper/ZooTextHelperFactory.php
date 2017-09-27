@@ -32,6 +32,7 @@ class ZooTextHelperFactory implements FactoryInterface
         return new ZooTextHelper(
             [
                 'de-DE' => include PROJECT_ROOT . '/data/texts/zoo.common.texts.de-DE.php',
+                'en-US' => include PROJECT_ROOT . '/data/texts/zoo.common.texts.en-US.php',
             ]
         );
     }
