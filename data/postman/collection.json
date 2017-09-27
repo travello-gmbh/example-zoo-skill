@@ -121,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"session\": {\n    \"sessionId\": \"SessionId.test\",\n    \"application\": {\n      \"applicationId\": \"amzn1.ask.skill.place-your-skill-id-here\"\n    },\n    \"attributes\": {\n        \"animals\": [\n            \"Ein Elefant\",\n            \"Ein Flamingo\",\n            \"Ein Pagagei\",\n            \"Ein Barsch\",\n            \"Ein Löwe\"\n        ]\n    },\n    \"user\": {\n      \"userId\": \"amzn1.ask.account.test\"\n    },\n    \"new\": true\n  },\n  \"request\": {\n    \"type\": \"IntentRequest\",\n    \"requestId\": \"EdwRequestId.test\",\n    \"locale\": \"en-US\",\n    \"timestamp\": \"2017-01-26T20:38:55Z\",\n    \"intent\": {\n      \"name\": \"AnimalIntent\",\n      \"slots\": {}\n    }\n  },\n  \"version\": \"1.0\"\n}"
+					"raw": "{\n  \"session\": {\n    \"sessionId\": \"SessionId.test\",\n    \"application\": {\n      \"applicationId\": \"amzn1.ask.skill.place-your-skill-id-here\"\n    },\n    \"attributes\": {\n        \"animals\": [\n            \"An elephant\",\n            \"A flamingo\",\n            \"A parrot\",\n            \"A perch\",\n            \"A lion\"\n        ]\n    },\n    \"user\": {\n      \"userId\": \"amzn1.ask.account.test\"\n    },\n    \"new\": true\n  },\n  \"request\": {\n    \"type\": \"IntentRequest\",\n    \"requestId\": \"EdwRequestId.test\",\n    \"locale\": \"en-US\",\n    \"timestamp\": \"2017-01-26T20:38:55Z\",\n    \"intent\": {\n      \"name\": \"AnimalIntent\",\n      \"slots\": {}\n    }\n  },\n  \"version\": \"1.0\"\n}"
 				},
 				"description": ""
 			},
