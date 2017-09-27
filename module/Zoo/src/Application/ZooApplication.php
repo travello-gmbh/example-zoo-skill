@@ -168,18 +168,30 @@ class ZooApplication extends AbstractAlexaApplication
             case 'vogel':
             case 'Vögel':
             case 'vögel':
+            case 'Bird':
+            case 'bird':
+            case 'Birds':
+            case 'birds':
                 return 'V';
 
             case 'Säugetier':
             case 'säugetier':
             case 'Säugetiere':
             case 'säugetiere':
+            case 'Mammal':
+            case 'mammal':
+            case 'Mammals':
+            case 'mammals':
                 return 'S';
 
             case 'Fisch':
             case 'fisch':
             case 'Fische':
             case 'fische':
+            case 'Fish':
+            case 'fish':
+            case 'Fishes':
+            case 'fishes':
                 return 'F';
 
             default:
@@ -194,10 +206,12 @@ class ZooApplication extends AbstractAlexaApplication
      */
     private function getRandomAnimal(string $speciesSlot = null)
     {
+        $locale = $this->alexaRequest->getRequest()->getLocale();
+
         do {
-            $randomType      = is_null($speciesSlot) ? array_rand($this->animalList) : $speciesSlot;
-            $randomAnimalKey = array_rand($this->animalList[$randomType]);
-            $randomAnimal    = $this->animalList[$randomType][$randomAnimalKey];
+            $randomType      = is_null($speciesSlot) ? array_rand($this->animalList[$locale]) : $speciesSlot;
+            $randomAnimalKey = array_rand($this->animalList[$locale][$randomType]);
+            $randomAnimal    = $this->animalList[$locale][$randomType][$randomAnimalKey];
 
         } while(in_array($randomAnimal, $this->sessionAnimals));
 
