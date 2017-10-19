@@ -1,20 +1,20 @@
 <?php
 /**
- * PHP Magazin Alexa mit PHP
+ * Beispielanwendung für Alexa Skill Mein Zoo
  *
  * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/RalfEggert/phpmagazin.alexa
- *
+ * @link       https://github.com/travello-gmbh/example-zoo-skill
  */
 
 namespace Zoo\Config;
 
 use Interop\Container\ContainerInterface;
-use Zoo\Action\PrivacyAction;
-use Zoo\Action\ZooAction;
+use TravelloAlexaZf\Action\HtmlPageAction;
+use TravelloAlexaZf\Action\SkillAction;
 use Zend\Expressive\Application;
 use Zend\ServiceManager\Factory\DelegatorFactoryInterface;
+use Zoo\ConfigProvider;
 
 /**
  * Class RouterDelegatorFactory
@@ -36,17 +36,14 @@ class RouterDelegatorFactory implements DelegatorFactoryInterface
         /** @var Application $application */
         $application = $callback();
 
-        $application->post(
-            '/zoo',
-            ZooAction::class,
-            'zoo'
-        );
-        $application->route(
-            '/zoo/privacy',
-            PrivacyAction::class,
-            ['GET', 'POST'],
-            'zoo-privacy'
-        );
+        $application->post('/zoo', SkillAction::class, 'zoo')
+            ->setOptions(['defaults' => ['skillName' => ConfigProvider::NAME]]);
+
+        $application->get('/zoo/privacy', HtmlPageAction::class, 'zoo-privacy')
+            ->setOptions(['defaults' => ['template' => 'zoo::privacy']]);
+
+        $application->get('/zoo/terms', HtmlPageAction::class, 'zoo-terms')
+            ->setOptions(['defaults' => ['template' => 'zoo::terms']]);
 
         return $application;
     }

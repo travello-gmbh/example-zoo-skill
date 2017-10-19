@@ -1,11 +1,10 @@
 <?php
 /**
- * PHP Magazin Alexa mit PHP
+ * Beispielanwendung für Alexa Skill Mein Zoo
  *
  * @author     Ralf Eggert <ralf@travello.audio>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- * @link       https://github.com/RalfEggert/phpmagazin.alexa
- *
+ * @link       https://github.com/travello-gmbh/example-zoo-skill
  */
 
 return [
