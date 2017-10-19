@@ -126,8 +126,7 @@ class AnimalIntent extends AbstractIntent
             $randomType      = is_null($speciesSlot) ? array_rand($this->animalList[$locale]) : $speciesSlot;
             $randomAnimalKey = array_rand($this->animalList[$locale][$randomType]);
             $randomAnimal    = $this->animalList[$locale][$randomType][$randomAnimalKey];
-
-        } while(in_array($randomAnimal, $animals));
+        } while (in_array($randomAnimal, $animals));
 
         if (count($animals) >= 5) {
             array_shift($animals);
