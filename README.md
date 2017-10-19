@@ -4,7 +4,7 @@ Install the example project with these lines:
 
 ```
 git clone https://github.com/travello-gmbh/example-zoo-skill
-cd phpmagazin.alexa
+cd example-zoo-skill
 composer install
 sudo chmod -R 777 data/cache/
 ```
