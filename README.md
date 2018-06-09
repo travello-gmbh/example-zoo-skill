@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is deprecated. Please move to https://github.com/phoice
+
 # Example Project for My Zoo skill
 
 Install the example project with these lines:
